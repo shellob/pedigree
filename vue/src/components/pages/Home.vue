@@ -1,10 +1,12 @@
 <template>
-  <PageLayout>
-    <section class="p-16">
-      Homepage
-      <div class="popover-container">
-        <button @click="() => openHelpModal()">Open modal</button>
-        <PopOver>
+  <div class="home-page">
+    <PageLayout>
+      <section class="home-page__section">
+        Homepage
+        <button @click="() => openHelpModal()" class="home-page__button">Open modal</button>
+      </section>
+    </PageLayout>
+    <PopOver>
           <template v-slot:button>
             <div>Отчество: Фамилия И. О.</div>
           </template>
@@ -14,75 +16,30 @@
             <div>id: 100</div>
           </template>
         </PopOver>
-      </div>
-    </section>
-  </PageLayout>
+  </div>
 </template>
 
-
 <script>
-import PageLayout from '../parts/PageLayout'
+import PageLayout from '@/components/parts/PageLayout';
 import PopOver from "@/components/ui/PopOver";
 import { helpModal } from "@/mixins/modals";
 
 export default {
   name: 'HomePage',
-  mixins: [helpModal],
   components: {
     PageLayout,
-    PopOver 
-  }
+    PopOver
+  },
+  mixins: [helpModal],
 }
 </script>
 
-<style scoped lang="less">
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
-
-.p-16 {
+<style scoped>
+.home-page__section {
   padding: 16px;
 }
 
-.popover-button {
-  background-color: #4CAF50; 
-  color: white; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  outline: none; 
-}
-
-.popover-container {
-  position: relative; 
-  display: inline-block; 
-}
-
-.popover-content {
-  position: absolute;
-  top: 100%;
-  left: 50%; 
-  transform: translateX(-50%);
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  padding: 16px;
-  width: auto;
-  z-index: 1000;
-  margin-top: 10px; 
-}
-
-@media (max-width: 600px) {
-  .popover-button {
-    padding: 5px 10px;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .popover-button {
-    padding: 15px 30px;
-    font-size: 18px;
-  }
+.home-page__popover-content {
+  margin-top: 10px;
 }
 </style>
