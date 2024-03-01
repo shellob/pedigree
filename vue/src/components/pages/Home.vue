@@ -7,15 +7,15 @@
       </section>
     </PageLayout>
     <PopOver>
-          <template v-slot:button>
-            <div>Отчество: Фамилия И. О.</div>
-          </template>
-          <template v-slot:popover>
-            <div>Фамилия Имя Отчество</div>
-            <div>01.01.1920 - 01.01.2020</div>
-            <div>id: 100</div>
-          </template>
-        </PopOver>
+        <template v-slot:button>
+          <div>Отчество: Фамилия И. О.</div>
+        </template>
+        <template v-slot:popover>
+          <div>Фамилия Имя Отчество</div>
+          <div>01.01.1920 - 01.01.2020</div>
+          <div>id: 100</div>
+        </template>
+    </PopOver>
   </div>
 </template>
 
