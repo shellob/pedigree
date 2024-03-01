@@ -1,10 +1,19 @@
 <template>
   <PageLayout>
-    <section class="home-page__section">
+    <section class="p-16">
       Homepage
-      <button @click="openHelpModal" class="home-page__button">Open modal</button>
+      <button @click="() => openHelpModal()">Open modal</button>
+      <ElButton type="primary">Кнопка</ElButton>
+      <PersonCard :person="person" />
+      <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
+      <EducationForm v-model="education" />
+      <WeddingForm v-model="wedding" />
+      <PersonForm :person="person" />
+      <MilitaryForm :military="military"/>
     </section>
-    <PopOver>
+    <section class="home-page__section">
+      <button @click="openHelpModal" class="home-page__button">Open modal</button>
+      <PopOver>
         <template v-slot:button>
           <div>Отчество: Фамилия И. О.</div>
         </template>
@@ -13,22 +22,88 @@
           <div>01.01.1920 - 01.01.2020</div>
           <div>id: 100</div>
         </template>
-    </PopOver>
+      </PopOver>
+    </section>
   </PageLayout>
 </template>
 
 <script>
-import PageLayout from '@/components/parts/PageLayout';
-import PopOver from "@/components/ui/PopOver";
-import { helpModal } from "@/mixins/modals";
+import PageLayout from '../parts/PageLayout'
+import { helpModal } from "@/mixins/modals" 
+import PersonCard from '@/components/cards/PersonCard.vue'
+import PhotoPreview from '../ui/PhotoPreview.vue'
+import EducationForm from '../forms/EducationForm.vue'
+import WeddingForm from '../forms/WeddingForm.vue'
+import PersonForm from '../forms/PersonForm.vue'
+import MilitaryForm from '../forms/MilitaryForm.vue'
+import PopOver from "@/components/ui/PopOver"
 
 export default {
   name: 'HomePage',
   components: {
     PageLayout,
-    PopOver
+    PhotoPreview,
+    PersonCard,
+    EducationForm,
+    WeddingForm,
+    PersonForm,
+    MilitaryForm,
+    PopOver,
   },
-  mixins: [helpModal],
+  mixins: [helpModal], 
+  data () {
+    return {
+      person: {
+        id: 'gi6437tf63i4ftfo43f',
+        secondName: 'Иванов',
+        firstName: 'Иван',
+        patronymic: 'Иванович',
+        birth_date: '01.01.2000',
+        die_date: '',
+        gender: 'male',
+        children: ['y3g46yf34fy636b', '3345fg35yg34f3f46'],
+        biography: 'Родился в ...',
+        activity: 'Бухгалтер',
+        photo: '/pictures/ivan.jpg',
+        weddingsData: [
+          {
+            person: { name: 'Иванова И.И.' },
+            date_start: '2021',
+            date_end: ''
+          },
+          {
+            person: { name: 'Петрова П.И.' },
+            date_start: '2010',
+            date_end: '2020'
+          }
+        ]
+      },
+      wedding: {
+        partner: {
+          id: '1',
+          name: 'Ivan',
+          second_name: 'Ivanov'
+        },
+        date_start: '01.01.2024',
+        date_end: '01.02.2024'
+      },
+      education: {
+        type: 'Бакалавриат',
+        level: 'Высшее',
+        startDate: '01.09.2019',
+        endDate: '31.08.2023',
+        institutionName: 'ВГУ',
+        institutionCity: 'Воронеж'
+      },
+      military: {
+        type: 'Контракт',
+        rank: 'Рядовой',
+        date_start: '01.01.2024',
+        date_end: '01.03.2025',
+        description: 'Служил в мото-стрелковой дивизии под Калининградом'
+      }
+    }
+  }
 }
 </script>
 
@@ -36,7 +111,6 @@ export default {
 .home-page__section {
   padding: 16px;
 }
-
 .home-page__popover-content {
   margin-top: 10px;
 }
