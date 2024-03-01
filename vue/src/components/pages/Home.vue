@@ -1,11 +1,9 @@
 <template>
-  <div class="home-page">
-    <PageLayout>
-      <section class="home-page__section">
-        Homepage
-        <button @click="() => openHelpModal()" class="home-page__button">Open modal</button>
-      </section>
-    </PageLayout>
+  <PageLayout>
+    <section class="home-page__section">
+      Homepage
+      <button @click="openHelpModal" class="home-page__button">Open modal</button>
+    </section>
     <PopOver>
         <template v-slot:button>
           <div>Отчество: Фамилия И. О.</div>
@@ -16,7 +14,7 @@
           <div>id: 100</div>
         </template>
     </PopOver>
-  </div>
+  </PageLayout>
 </template>
 
 <script>
