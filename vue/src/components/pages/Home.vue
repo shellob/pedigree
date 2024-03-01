@@ -39,6 +39,7 @@ import MilitaryForm from '../forms/MilitaryForm.vue'
 import PopOver from "@/components/ui/PopOver"
 
 export default {
+  mixins: [helpModal],
   name: 'HomePage',
   components: {
     PageLayout,
@@ -50,7 +51,6 @@ export default {
     MilitaryForm,
     PopOver,
   },
-  mixins: [helpModal], 
   data () {
     return {
       person: {
@@ -106,12 +106,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.home-page__section {
-  padding: 16px;
-}
-.home-page__popover-content {
-  margin-top: 10px;
-}
-</style>
