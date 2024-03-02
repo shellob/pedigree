@@ -10,9 +10,6 @@
       <WeddingForm v-model="wedding" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
-    </section>
-    <section class="home-page__section">
-      <button @click="openHelpModal" class="home-page__button">Open modal</button>
       <PopOver>
         <template v-slot:button>
           <div>Отчество: Фамилия И. О.</div>
@@ -23,6 +20,9 @@
           <div>id: 100</div>
         </template>
       </PopOver>
+    </section>
+    <section class="home-page__section">
+      <button @click="openHelpModal" class="home-page__button">Open modal</button>
     </section>
   </PageLayout>
 </template>

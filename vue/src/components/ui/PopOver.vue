@@ -23,21 +23,21 @@ export default {
 
 <style lang="less" scoped>
 .popover-container {
-  position: fixed;
+  position: relative;
   top: 10px;
-  left: 50%;
+  left: 25%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 15;
+  width: 300px;
 
   &__button-slot {
     background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
+    border-radius: 20px; 
+    cursor: pointer; 
     font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-weight: 700; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 
@@ -64,7 +64,7 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease; 
+  transition: 0.3s ease; 
 }
 
 .fade-enter, .fade-leave-to {
@@ -72,4 +72,3 @@ export default {
   transform: translateY(-10px);
 }
 </style>
-
