@@ -1,11 +1,11 @@
 <template>
   <div class="popover-container">
     <div class="popover-container__button-slot" @mouseover="show = true" @mouseleave="show = false">
-      <slot name="button"></slot>
+      <slot name="button"/>
     </div>
     <transition name="fade">
       <div v-if="show" class="popover-container__popover-slot">
-        <slot name="popover"></slot>
+        <slot name="popover"/>
       </div>
     </transition>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       show: false,
     }
@@ -59,7 +59,7 @@ export default {
     padding: 10px;
     margin-top: 10px; 
     box-sizing: border-box;
-    transition: opacity 0.3s ease, transform 0.3s ease; 
+    transition: 0.3s ease; 
   }
 }
 
