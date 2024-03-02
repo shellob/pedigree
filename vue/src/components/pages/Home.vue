@@ -7,7 +7,7 @@
       <PersonCard :person="person" />
       <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
       <EducationForm v-model="education" />
-      <WeddingForm v-model="wedding" />
+      <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
       <PopOver>
@@ -23,6 +23,7 @@
     </section>
     <section class="home-page__section">
       <button @click="openHelpModal" class="home-page__button">Open modal</button>
+      <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
 </template>
@@ -37,6 +38,8 @@ import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import MilitaryForm from '../forms/MilitaryForm.vue'
 import PopOver from "@/components/ui/PopOver"
+import { mapGetters } from 'vuex'
+import WorkForm from '../forms/WorkForm.vue'
 
 export default {
   mixins: [helpModal],
@@ -50,6 +53,25 @@ export default {
     PersonForm,
     MilitaryForm,
     PopOver,
+    WorkForm
+  },
+  computed: {
+    ...mapGetters('persons', [
+      'filteredPersons'
+    ]),
+    persons() {
+      const customFilter = (person) => {
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.gender !== partnerGender &&
+          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
+          (!person.birthDate|| new Date(person.birthDate) < deathDate)
+        )
+      }
+      return this.filteredPersons(customFilter) || []
+    }
   },
   data () {
     return {
@@ -84,8 +106,8 @@ export default {
           name: 'Ivan',
           second_name: 'Ivanov'
         },
-        date_start: '01.01.2024',
-        date_end: '01.02.2024'
+        date_start: '01.01.2020',
+        date_end: '01.02.2022'
       },
       education: {
         type: 'Бакалавриат',
@@ -101,6 +123,14 @@ export default {
         date_start: '01.01.2024',
         date_end: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
+      },
+      workData: {
+        place: "Россия, Воронеж",
+        organization: "RedCollar",
+        startDate: "01.01.2023",
+        endDate: "31.12.2023",
+        position: "Младший инженер-программист",
+        description: "Клёвый чел"
       }
     }
   }
