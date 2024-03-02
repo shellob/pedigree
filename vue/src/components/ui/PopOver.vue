@@ -3,7 +3,7 @@
     <div class="popover-container__button-slot" @mouseover="show = true" @mouseleave="show = false">
       <slot name="button"/>
     </div>
-    <transition name="fade">
+    <transition name="popover-container__transition">
       <div v-if="show" class="popover-container__popover-slot">
         <slot name="popover"/>
       </div>
@@ -61,14 +61,15 @@ export default {
     box-sizing: border-box;
     transition: 0.3s ease; 
   }
-}
 
-.fade-enter-active, .fade-leave-active {
-  transition: 0.3s ease; 
-}
+  &__transition
+  .enter-active, .leave-active {
+    transition: 0.3s ease; 
+  }
 
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
+  .enter, .leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 </style>
